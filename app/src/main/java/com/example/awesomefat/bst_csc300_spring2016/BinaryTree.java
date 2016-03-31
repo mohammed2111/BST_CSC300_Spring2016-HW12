@@ -8,6 +8,7 @@ public class BinaryTree
     private char payload;
     private BinaryTree leftTree;
     private BinaryTree rightTree;
+    private String toReturn = "";
 
     public BinaryTree(char payload)
     {
@@ -23,18 +24,40 @@ public class BinaryTree
         return Math.abs(leftDepth-rightDepth) > 1;
     }
 
-    public String outOfBalanceSecondarily(char val)
+    public String outOfBalanceSecondarily(char val, String turn)
     {
+
+        this.toReturn = turn;
         //are we looking at a matching payload and are we a leaf node
         if(this.payload == val && this.leftTree == null)
         {
+
             //return the last turn we made
             //HOW DO WE KNOW WHAT WAS THE LAST TURN?
+            return this.toReturn;
+
         }
         else
         {
-            //keep traversing the tree and ultimately return left or right
+
+            if(val > this.payload)
+            {
+
+                this.getRightTree().outOfBalanceSecondarily(val, "right");
+
+
+            }
+            else
+            {
+
+                this.getLeftTree().outOfBalanceSecondarily(val, "left");
+            }
+
         }
+        return this.toReturn;
+
+
+
     }
 
     public int depth()

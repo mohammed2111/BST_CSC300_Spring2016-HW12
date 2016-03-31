@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity
             tree.add(vals.charAt(i));
             if(tree.isOutOfBalance())
             {
-                tree.howAreWeOutOfBalance();
+                tree.howAreWeOutOfBalance(vals.charAt(i));
             }
         }
         //tree.visitPreOrder();
